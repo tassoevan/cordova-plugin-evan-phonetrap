@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<plugin xmlns="http://www.phonegap.com/ns/plugins/1.0"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    id="me.tassoevan.cordova.phonetrap"
+    version="0.1.0">
+    <name>Cordova Evan Plugin PhoneTrap</name>
+    <description>Phone calls event handling for Cordova apps running in Android devices</description>
+    <license>MIT</license>
+    <keywords>cordova,evan,phone,call,trap,android</keywords>
+
+    <js-module src="www/evan.js" name="evan">
+        <clobbers target="cordova.Evan"/>
+    </js-module>
+    
+    <platform name="android">
+        <config-file target="res/xml/config.xml" parent="/*">
+            <feature name="PhoneTrapPlugin">
+                <param name="android-package" value="me.tassoevan.cordova.PhoneTrapPlugin"/>
+            </feature>
+        </config-file>
+
+        <config-file target="AndroidManifest.xml" parent="/*">
+            <uses-permission android:name="android.permission.READ_PHONE_STATE"/>
+            <uses-permission android:name="android.permission.PROCESS_OUTGOING_CALLS"/>
+        </config-file>
+
+        <source-file src="src/android/PhoneTrapPlugin.java" target-dir="src/me/tassoevan/cordova/"/>
+        <source-file src="src/android/CallStateListener.java" target-dir="src/me/tassoevan/cordova/"/>
+    </platform>
+</plugin>
+
